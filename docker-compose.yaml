@@ -1,0 +1,18 @@
+services:
+  app:
+    build:
+      context: app
+      dockerfile: Dockerfile
+    container_name: app-replay
+    command: sh -c "npm ci && npm run dev"
+    volumes:
+      - ./app:/app
+    ports:
+      - "3000:3000"
+    networks:
+      - replay
+
+networks:
+  replay:
+    driver: bridge
+    name: replay
